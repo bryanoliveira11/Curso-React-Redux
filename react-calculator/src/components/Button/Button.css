@@ -11,4 +11,9 @@
   border-bottom: var(--border-button);
   cursor: pointer;
   outline: none;
+  transition: filter 100ms ease-in-out;
+}
+
+.button:hover {
+  filter: brightness(85%);
 }
