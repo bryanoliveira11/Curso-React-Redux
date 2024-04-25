@@ -17,3 +17,24 @@
 .button:hover {
   filter: brightness(85%);
 }
+
+.button:active {
+  background: #ccc;
+}
+
+.button.double {
+  grid-column: span 2;
+}
+
+.button.triple {
+  grid-column: span 3;
+}
+
+.button.operation {
+  background: #fa8231;
+  color: #fff;
+}
+
+.button.operation:active {
+  background: #fa8231cc;
+}
