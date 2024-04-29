@@ -9,9 +9,9 @@ export default function Content(props) {
   return (
     <main className="Content">
       <Routes>
+        <Route path="/" exact element={<Home />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/param/:id" element={<Param />}></Route>
-        <Route path="/" element={<Home />}></Route>
         <Route path="*"></Route>
       </Routes>
     </main>
