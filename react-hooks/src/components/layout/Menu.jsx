@@ -10,6 +10,9 @@ const Menu = (props) => (
         <li>
           <Link to="/">Home</Link>
         </li>
+        <li>
+          <Link to="/useState">useState()</Link>
+        </li>
       </ul>
     </nav>
   </aside>

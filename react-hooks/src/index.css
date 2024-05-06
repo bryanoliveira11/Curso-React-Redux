@@ -26,9 +26,14 @@ body {
     border: none;
     outline: none;
     background-color: #0092c3;
-
+    cursor: pointer;
     font-size: 3rem;
     color: #fff;
+    transition: filter 150ms ease-in-out;
+}
+
+.btn:focus {
+  filter: brightness(85%);
 }
 
 .center {
