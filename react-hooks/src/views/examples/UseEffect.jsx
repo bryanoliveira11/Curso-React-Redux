@@ -3,6 +3,7 @@ import PageTitle from '../../components/layout/PageTitle';
 import SectionTitle from '../../components/layout/SectionTitle';
 
 const UseEffect = (props) => {
+  // EX 1
   const [num, setNum] = useState(1);
   const [fatorial, setFatorial] = useState(1);
 
@@ -15,6 +16,13 @@ const UseEffect = (props) => {
     if (num === 0) return 1;
     return calcFatorial(num - 1) * num;
   };
+
+  // EX 2
+  const [evenOrOdd, setEvenOrOdd] = useState('Odd');
+
+  useEffect(() => {
+    setEvenOrOdd(num % 2 === 0 ? 'Even' : 'Odd');
+  }, [num]);
 
   return (
     <div className="UseEffect">
@@ -34,9 +42,14 @@ const UseEffect = (props) => {
           value={num}
           onChange={(e) => setNum(e.target.value)}
         />
-        <button className="btn" onClick={calcFatorial(num)}>
-          Calculate
-        </button>
+      </div>
+
+      <SectionTitle title="Exercise #02" />
+      <div className="center">
+        <div>
+          <span className="text">Status: </span>
+          <span className="text red">{evenOrOdd}</span>
+        </div>
       </div>
     </div>
   );
