@@ -19,6 +19,9 @@ const Menu = (props) => (
         <li>
           <Link to="/useRef">useRef()</Link>
         </li>
+        <li>
+          <Link to="/useMemo">useMemo()</Link>
+        </li>
       </ul>
     </nav>
   </aside>
