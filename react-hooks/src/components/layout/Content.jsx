@@ -8,6 +8,7 @@ import UseState from '../../views/examples/UseState';
 import UseEffect from '../../views/examples/UseEffect';
 import UseRef from '../../views/examples/UseRef';
 import UseMemo from '../../views/examples/UseMemo';
+import UseCallback from '../../views/examples/UseCallback';
 
 const Content = (props) => (
   <main className="Content">
@@ -17,6 +18,7 @@ const Content = (props) => (
       <Route path="/useEffect" element={<UseEffect />}></Route>
       <Route path="/useRef" element={<UseRef />}></Route>
       <Route path="/useMemo" element={<UseMemo />}></Route>
+      <Route path="/useCallback" element={<UseCallback />}></Route>
       <Route path="*" element={<NotFound />}></Route>
     </Routes>
   </main>

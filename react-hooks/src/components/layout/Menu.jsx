@@ -22,6 +22,9 @@ const Menu = (props) => (
         <li>
           <Link to="/useMemo">useMemo()</Link>
         </li>
+        <li>
+          <Link to="/useCallback">useCallback()</Link>
+        </li>
       </ul>
     </nav>
   </aside>
