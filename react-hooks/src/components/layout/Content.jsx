@@ -10,6 +10,7 @@ import UseRef from '../../views/examples/UseRef';
 import UseMemo from '../../views/examples/UseMemo';
 import UseCallback from '../../views/examples/UseCallback';
 import UseContext from '../../views/examples/UseContext';
+import UseReducer from '../../views/examples/UseReducer';
 
 const Content = (props) => (
   <main className="Content">
@@ -21,6 +22,7 @@ const Content = (props) => (
       <Route path="/useMemo" element={<UseMemo />}></Route>
       <Route path="/useCallback" element={<UseCallback />}></Route>
       <Route path="/useContext" element={<UseContext />}></Route>
+      <Route path="/useReducer" element={<UseReducer />}></Route>
       <Route path="*" element={<NotFound />}></Route>
     </Routes>
   </main>

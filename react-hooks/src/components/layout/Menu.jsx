@@ -28,6 +28,9 @@ const Menu = (props) => (
         <li>
           <Link to="/useContext">useContext()</Link>
         </li>
+        <li>
+          <Link to="/useReducer">useReducer()</Link>
+        </li>
       </ul>
     </nav>
   </aside>
