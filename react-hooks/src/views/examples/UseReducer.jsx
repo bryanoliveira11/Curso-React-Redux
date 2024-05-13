@@ -1,33 +1,11 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer } from 'react';
 import PageTitle from '../../components/layout/PageTitle';
 import SectionTitle from '../../components/layout/SectionTitle';
-
-const initialState = {
-  cart: [],
-  products: [],
-  user: null,
-  number: 0,
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'numberAdd':
-      return { ...state, number: state.number + action.n };
-    case 'numberMultiply':
-      return { ...state, number: state.number * action.n };
-    case 'numberDivision':
-      return { ...state, number: state.number / action.n };
-    case 'int':
-      return { ...state, number: parseInt(state.number) };
-    case 'login':
-      return { ...state, user: { name: action.payload.name } };
-    default:
-      return state;
-  }
-};
+import { allReducers, initialState } from '../../store';
+import { numberAdd, login } from '../../store/actions';
 
 const UseReducer = (props) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(allReducers, initialState);
 
   return (
     <div className="useReducer">
@@ -40,10 +18,7 @@ const UseReducer = (props) => {
         {state.user ? <span className="text">{state.user.name}</span> : ''}
         <span className="text">{state.number}</span>
         <div>
-          <button
-            className="btn"
-            onClick={() => dispatch({ type: 'numberAdd', n: 2 })}
-          >
+          <button className="btn" onClick={() => numberAdd(dispatch, 2)}>
             +2
           </button>
           <button
@@ -61,12 +36,7 @@ const UseReducer = (props) => {
           <button className="btn" onClick={() => dispatch({ type: 'int' })}>
             int
           </button>
-          <button
-            className="btn"
-            onClick={() =>
-              dispatch({ type: 'login', payload: { name: 'user' } })
-            }
-          >
+          <button className="btn" onClick={() => login(dispatch, 'user')}>
             Add User
           </button>
         </div>
