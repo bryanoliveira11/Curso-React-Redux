@@ -11,8 +11,14 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'numberAdd2':
-      return { ...state, number: state.number + 2 };
+    case 'numberAdd':
+      return { ...state, number: state.number + action.n };
+    case 'numberMultiply':
+      return { ...state, number: state.number * action.n };
+    case 'numberDivision':
+      return { ...state, number: state.number / action.n };
+    case 'int':
+      return { ...state, number: parseInt(state.number) };
     case 'login':
       return { ...state, user: { name: action.payload.name } };
     default:
@@ -36,9 +42,24 @@ const UseReducer = (props) => {
         <div>
           <button
             className="btn"
-            onClick={() => dispatch({ type: 'numberAdd2' })}
+            onClick={() => dispatch({ type: 'numberAdd', n: 2 })}
           >
             +2
+          </button>
+          <button
+            className="btn"
+            onClick={() => dispatch({ type: 'numberMultiply', n: 7 })}
+          >
+            *7
+          </button>
+          <button
+            className="btn"
+            onClick={() => dispatch({ type: 'numberDivision', n: 25 })}
+          >
+            /25
+          </button>
+          <button className="btn" onClick={() => dispatch({ type: 'int' })}>
+            int
           </button>
           <button
             className="btn"
