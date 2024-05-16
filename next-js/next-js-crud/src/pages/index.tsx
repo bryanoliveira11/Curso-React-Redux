@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Button from '../components/Button';
 import Form from '../components/Form';
 import Layout from '../components/Layout';
@@ -20,21 +21,43 @@ export default function Home() {
     console.log(client.name);
   }
 
+  function saveClient(client: Client) {
+    console.log(client);
+  }
+
+  const [visible, setVisible] = useState<'table' | 'form'>('table');
+
   return (
     <div
       className={`flex justify-center items-center h-screen
      bg-gradient-to-r from-blue-500 to-purple-500 text-white`}
     >
       <Layout title="Next CRUD">
-        <div className="flex justify-end">
-          <Button className="mb-4" color='green'>New Client</Button>
-        </div>
-        <Table
-          clients={clients}
-          selectedClient={selectedClient}
-          deletedClient={deletedClient}
-        ></Table>
-        <Form client={clients[3]}></Form>
+        {visible === 'table' ? (
+          <>
+            <div className="flex justify-end">
+              <Button
+                className="mb-4"
+                color="green"
+                onClick={() => setVisible('form')}
+              >
+                New Client
+              </Button>
+            </div>
+
+            <Table
+              clients={clients}
+              selectedClient={selectedClient}
+              deletedClient={deletedClient}
+            ></Table>
+          </>
+        ) : (
+          <Form
+            client={clients[3]}
+            clientChanged={saveClient}
+            canceled={() => setVisible('table')}
+          />
+        )}
       </Layout>
     </div>
   );
