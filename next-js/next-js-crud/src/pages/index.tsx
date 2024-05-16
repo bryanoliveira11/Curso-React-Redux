@@ -1,4 +1,5 @@
 import Button from '../components/Button';
+import Form from '../components/Form';
 import Layout from '../components/Layout';
 import Table from '../components/Table';
 import Client from '../core/Client';
@@ -26,13 +27,14 @@ export default function Home() {
     >
       <Layout title="Next CRUD">
         <div className="flex justify-end">
-          <Button className="mb-4">New Client</Button>
+          <Button className="mb-4" color='green'>New Client</Button>
         </div>
         <Table
           clients={clients}
           selectedClient={selectedClient}
           deletedClient={deletedClient}
         ></Table>
+        <Form client={clients[3]}></Form>
       </Layout>
     </div>
   );
