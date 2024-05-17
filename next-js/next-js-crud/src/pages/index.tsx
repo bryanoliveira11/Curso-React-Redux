@@ -1,46 +1,20 @@
-import { useEffect, useState } from 'react';
 import Button from '../components/Button';
 import Form from '../components/Form';
 import Layout from '../components/Layout';
 import Table from '../components/Table';
-import Client from '../core/Client';
-import ClientRepo from '../core/ClientRepo';
-import ClientCollection from '../backend/db/ClientCollection';
+import useClients from '../hooks/useClients';
 
 export default function Home() {
-  const [visible, setVisible] = useState<'table' | 'form'>('table');
-  const [client, setClient] = useState<Client>(Client.nullClient());
-  const [clients, setClients] = useState<Client[]>([]);
-  const repo: ClientRepo = new ClientCollection();
-
-  useEffect(getAllClients, []);
-
-  function getAllClients() {
-    repo.getAllClients().then((clients) => {
-      setClients(clients);
-      setVisible('table');
-    });
-  }
-
-  function selectedClient(client: Client) {
-    setClient(client);
-    setVisible('form');
-  }
-
-  async function deleteClient(client: Client) {
-    await repo.delete(client);
-    getAllClients();
-  }
-
-  async function saveClient(client: Client) {
-    await repo.save(client);
-    getAllClients();
-  }
-
-  function newClient() {
-    setClient(Client.nullClient());
-    setVisible('form');
-  }
+  const {
+    newClient,
+    deleteClient,
+    selectClient,
+    saveClient,
+    client,
+    clients,
+    visible,
+    setVisible,
+  } = useClients();
 
   return (
     <div
@@ -58,7 +32,7 @@ export default function Home() {
 
             <Table
               clients={clients}
-              selectedClient={selectedClient}
+              selectedClient={selectClient}
               deletedClient={deleteClient}
             ></Table>
           </>
