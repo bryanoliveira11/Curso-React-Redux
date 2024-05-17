@@ -1,5 +1,5 @@
 import firebase from 'firebase/compat/app';
-import 'firebase/firestore';
+import 'firebase/compat/firestore';
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
@@ -9,4 +9,7 @@ if (!firebase.apps.length) {
   });
 }
 
-export default firebase
+const db = firebase.firestore();
+
+export { db };
+export default firebase;

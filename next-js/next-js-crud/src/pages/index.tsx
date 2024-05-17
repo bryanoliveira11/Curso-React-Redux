@@ -1,32 +1,40 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../components/Button';
 import Form from '../components/Form';
 import Layout from '../components/Layout';
 import Table from '../components/Table';
 import Client from '../core/Client';
+import ClientRepo from '../core/ClientRepo';
+import ClientCollection from '../backend/db/ClientCollection';
 
 export default function Home() {
   const [visible, setVisible] = useState<'table' | 'form'>('table');
   const [client, setClient] = useState<Client>(Client.nullClient());
+  const [clients, setClients] = useState<Client[]>([]);
+  const repo: ClientRepo = new ClientCollection();
 
-  const clients = [
-    new Client('c1', 34, '1'),
-    new Client('c2', 23, '2'),
-    new Client('c3', 32, '3'),
-    new Client('c4', 12, '4'),
-  ];
+  useEffect(getAllClients, []);
+
+  function getAllClients() {
+    repo.getAllClients().then((clients) => {
+      setClients(clients);
+      setVisible('table');
+    });
+  }
 
   function selectedClient(client: Client) {
     setClient(client);
     setVisible('form');
   }
 
-  function deletedClient(client: Client) {
-    console.log(client.name);
+  async function deleteClient(client: Client) {
+    await repo.delete(client);
+    getAllClients();
   }
 
-  function saveClient(client: Client) {
-    setVisible('table');
+  async function saveClient(client: Client) {
+    await repo.save(client);
+    getAllClients();
   }
 
   function newClient() {
@@ -43,11 +51,7 @@ export default function Home() {
         {visible === 'table' ? (
           <>
             <div className="flex justify-end">
-              <Button
-                className="mb-4"
-                color="green"
-                onClick={newClient}
-              >
+              <Button className="mb-4" color="green" onClick={newClient}>
                 New Client
               </Button>
             </div>
@@ -55,7 +59,7 @@ export default function Home() {
             <Table
               clients={clients}
               selectedClient={selectedClient}
-              deletedClient={deletedClient}
+              deletedClient={deleteClient}
             ></Table>
           </>
         ) : (

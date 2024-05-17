@@ -1,6 +1,6 @@
 import Client from '@/src/core/Client';
 import ClientRepo from '@/src/core/ClientRepo';
-import firebase from '../config';
+import firebase, { db } from '../config';
 
 export default class ClientCollection implements ClientRepo {
   conversor = {
@@ -40,9 +40,6 @@ export default class ClientCollection implements ClientRepo {
   }
 
   private collection() {
-    return firebase
-      .firestore()
-      .collection('clients')
-      .withConverter(this.conversor);
+    return db.collection('clients').withConverter(this.conversor);
   }
 }
